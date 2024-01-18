@@ -155,30 +155,42 @@ function App() {
 
   const deleteCategory = (id) =>{
     setCategories(categories.filter(cate => cate.id !== id))
+    setCourses(courses.filter((cours)=>cours.category_id !== id))
   }
 
   const editCategory = (params) => {
-    console.log(params);
-    setForm({
-      id: "",
-      name: "",
-      code: "",
-    });
-    setEditCategory((pre) => !pre);
-    const isEdit = params?.isEdit;
-    if (isEdit) {
+    // setEditCategory((pre) => !pre);
+    setEditCategory(params?.cate?.id);
+    if (isEditCategory === params?.cate?.id) {
       console.log("form is editing");
       setForm({
         id: "",
         name: "",
         code: "",
       });
-      setForm({ ...params.cate});
-      //call on Save
-
-      return;
+      setEditCategory(false)    
     }
+    setForm({ ...params.cate});
+    return;
   };
+
+
+
+  // const onEditCategory = (params) => {
+  //   setEditCategory(params?.category?.id);
+  //   if (isEditCategory === params?.category?.id) {
+  //     setForm({
+  //       id: "",
+  //       name: "",
+  //       code: "",
+  //     });
+  //     setEditCategory(false);
+  //     return;
+  //   }
+
+  //   setForm({ ...params.category });
+  // };
+
 
  
   // console.log("saveCategory", categories)

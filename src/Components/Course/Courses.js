@@ -9,7 +9,7 @@ import { uuidv4 } from "../../utils";
 import { CustomButton } from "../CustomButton";
 import { courseSchema } from "../../Schemas/input";
 
-export const Courses = ({ categories, onSave }) => {
+export const Courses = ({ categories, onSave, value }) => {
   // console.log("categories:",categories)
 
   const initialValues = {
@@ -46,12 +46,12 @@ export const Courses = ({ categories, onSave }) => {
   return (
     <div>
       <Formik
-        initialValues={initialValues}
+        initialValues={value?.id ? value : initialValues}
         // validationSchema={courseSchema}
         onSubmit={onSubmit}
       >
         {(props) => {
-            console.log("props...",props.errors)
+            // console.log("props...",props)
           return (
             <div class="mt-6 block w-7/12 rounded-lg bg-gray-50 p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
               <Form className="shadow-md rounded px-6 pt-6 pb-6 ">
@@ -97,16 +97,16 @@ export const Courses = ({ categories, onSave }) => {
                   />
                 </div>
 
-                {/* <FieldArray name="chapters" >
+                <FieldArray name="chapters" >
                     {({})=>(
                         <>
                             {props?.values?.chapters.length>0 && props?.values?.chapters.map((chapter,chapterIndex)=>(
-                                <Chapter  key={chapter.id} chapterIndex={chapterIndex} chapter={chapter}  />
+                                <Chapter  key={chapter.id} chapterIndex={chapterIndex} chapter={chapter} props={props} />
 
-                            ))}
+                            ))} 
                         </>
                     )}
-                </FieldArray> */}
+                </FieldArray>
                 
 
                 <CustomButton label="Save" type="submit" />

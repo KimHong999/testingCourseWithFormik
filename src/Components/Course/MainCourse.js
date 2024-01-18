@@ -6,7 +6,8 @@ import { uuidv4 } from "../../utils";
 export const MainCourse = ({categories, data, setData}) =>{
 
     const [editCourseForm, setEditCourseForm] = useState({})
-    const [isEditCourse, setEditCourse] = useState(false)
+    const [isCourseEdit,setCourseEdit] = useState(false)
+   
 
     const saveCourse = (param) => {
        const newCourse ={
@@ -17,34 +18,39 @@ export const MainCourse = ({categories, data, setData}) =>{
        console.log("save course",param)
     }
 
-    
+
 
     const deleteCourse = (id) =>{
-        setData(data.map((course)=>course.id !== id ))
+        setData(data.filter((course)=>course.id !== id ))
     }
 
-    const onEditingCourse = (id) => {
+    // const editCourse = (param) => {
+    //     console.log("param",param)
+    //     setData(data.find((course)=>course.id === param.id ? {...course, ...param} : course))
+    // }
+
+    const editCourse = (id) => {
 
         console.log(isCourseEdit)
-        setCourseEdit(pre=>!pre)
+        setCourseEdit(pre => !pre)
         if (isCourseEdit === false) 
         
         {
       
           const result = data?.find((course) => course.id === id);
-          setEditForm(result);
+          setEditCourseForm(result);
        
      
           return;
         }
         // setCourseEdit(false)
-        setEditForm({});
+        setEditCourseForm({});
       };
 
 
     return(
         <div>
-            <TableCourse data={data} onEdit={onEditingCourse} categories={categories} />
+            <TableCourse data={data} onDelete={deleteCourse} onEdit={editCourse} categories={categories} />
             <Courses categories={categories} onSave={saveCourse} value={editCourseForm} />
         </div>
     )

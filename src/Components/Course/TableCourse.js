@@ -1,8 +1,8 @@
-import React, { useMemo } from "react";
+import React, { useState } from "react";
 import { CustomButton } from "../CustomButton";
 
-export const TableCourse = ({data, categories}) => {
-    
+export const TableCourse = ({data, categories, onDelete, onEdit}) => {
+    const [isEdit, setEdit] = useState(false);
 
     return (
         <div>
@@ -36,10 +36,19 @@ export const TableCourse = ({data, categories}) => {
                                     return sum + chapter?.lessons?.length;}, 0)}
                                 </td>
                                 <td>
-                                    <CustomButton label="Edit" />
+                                    <CustomButton label="Edit" onClick={()=>{
+                                        setEdit((pre) => !pre);
+                  
+                                        if (isEdit === false) {
+                                          onEdit(cousData?.id, !isEdit);
+                                          return;
+                                        }
+                    
+                                        onEdit(cousData?.id, !isEdit);
+                                    }} />
                                 </td>
                                 <td>
-                                    <CustomButton label="Delete" />
+                                    <CustomButton label="Delete" onClick={()=>onDelete(cousData.id)} />
                                 </td>
                             </tr>
                         ))}
