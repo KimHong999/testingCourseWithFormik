@@ -11,6 +11,7 @@ import { courseSchema } from "../../Schemas/input";
 
 export const Courses = ({ categories, onSave, value }) => {
   // console.log("categories:",categories)
+  console.log("value",value)
 
   const initialValues = {
     name: "",
@@ -46,12 +47,13 @@ export const Courses = ({ categories, onSave, value }) => {
   return (
     <div>
       <Formik
-        initialValues={value?.id ? value : initialValues}
+      enableReinitialize={true}
+        initialValues={value.id ? value : initialValues}
         // validationSchema={courseSchema}
         onSubmit={onSubmit}
       >
         {(props) => {
-            // console.log("props...",props)
+            console.log("props...",props.values)
           return (
             <div class="mt-6 block w-7/12 rounded-lg bg-gray-50 p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
               <Form className="shadow-md rounded px-6 pt-6 pb-6 ">

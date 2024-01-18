@@ -6,7 +6,7 @@ import { CustomButton } from '../CustomButton';
 
 export const Category = ({onSave, value}) =>{
 
-console.log("value",value)
+// console.log("value category",value)
 
 
     const onSubmit = (values, actions) =>{
@@ -48,7 +48,7 @@ console.log("value",value)
                         <div className='mb-6' >
                             <CustomInput label="code" type="text" placeholder="code" name="code" onChange={props.handleChange}  value={props.values.code} />
                         </div>
-                        <CustomButton label="submit" type='submit' > {value?.id? "update" : "save"} </CustomButton>
+                        <CustomButton label="save" type='submit' > {value.id ? "update" : "save"} </CustomButton>
                     </Form>
                 </div>
             )}

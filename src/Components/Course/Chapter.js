@@ -4,9 +4,34 @@ import { CustomButton } from "../CustomButton";
 import { CustomInput } from "../CustomInput";
 import { CustomTextArea } from "../CustomTextArea";
 import { Lesson } from "./Lesson";
+import { uuidv4 } from "../../utils";
 
 
 export const Chapter = ({ chapterIndex, chapter, props }) => {
+
+
+//   const handleAddChapter = () => {
+//     const addChapter = {
+//         id : uuidv4(),
+//         name : "",
+//         summarize : "",
+//         lessons: [{
+//             id: uuidv4(),
+//             name:"",
+//             content:""
+//         }]
+//     }
+//     setForm((pre)=>{
+//         return{
+//             ...pre,
+//             chapters : [...pre.chapters, addChapter]
+//         }
+//     })
+//     // console.log("add cap", addChapter)
+// }
+
+
+
   // console.log("chapreindex", chapter);
   return (
     <div key={chapterIndex}>

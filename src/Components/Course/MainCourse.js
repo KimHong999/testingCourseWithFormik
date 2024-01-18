@@ -29,29 +29,47 @@ export const MainCourse = ({categories, data, setData}) =>{
     //     setData(data.find((course)=>course.id === param.id ? {...course, ...param} : course))
     // }
 
-    const editCourse = (id) => {
-
-        console.log(isCourseEdit)
-        setCourseEdit(pre => !pre)
-        if (isCourseEdit === false) 
+    // const editCourse = (id) => {
+    //     console.log("edit course form",editCourseForm)
+    //     console.log(isCourseEdit)
+    //     setCourseEdit(pre => !pre)
+    //     if (isCourseEdit === false) 
         
-        {
+    //     {
+    //         console.log("course is editing")
       
-          const result = data?.find((course) => course.id === id);
-          setEditCourseForm(result);
+    //       const result = data?.find((course) => course.id === id);
+    //       setEditCourseForm(result);
        
      
+    //       return;
+    //     }
+    //     // setCourseEdit(false)
+    //     setEditCourseForm({});
+    //   };
+
+
+
+      const editCourse = (id) => {
+
+
+        console.log("course is editing")
+        setCourseEdit(id);
+     
+        if (isCourseEdit === id) {
+          setEditCourseForm({});
+          setCourseEdit(false);
           return;
         }
-        // setCourseEdit(false)
-        setEditCourseForm({});
+        const result = data?.find((course) => course.id === id);
+        setEditCourseForm(result);
       };
 
 
     return(
         <div>
             <TableCourse data={data} onDelete={deleteCourse} onEdit={editCourse} categories={categories} />
-            <Courses categories={categories} onSave={saveCourse} value={editCourseForm} />
+            <Courses categories={categories} onSave={saveCourse} value={editCourseForm}  />
         </div>
     )
 }

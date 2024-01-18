@@ -42,7 +42,7 @@ function App() {
             {
               id: 1,
               name: "The Lesson Course",
-              summary: "This Lesson is so cool",
+              content: "This Lesson is so cool",
             },
           ],
         },
@@ -54,7 +54,7 @@ function App() {
             {
               id: 1,
               name: "The Lesson Course",
-              summary: "This Lesson is so cool",
+              content: "This Lesson is so cool",
             },
           ],
         },
@@ -66,7 +66,7 @@ function App() {
             {
               id: 1,
               name: "The Lesson Course",
-              summary: "This Lesson is so cool",
+              content: "This Lesson is so cool",
             },
           ],
         },
@@ -86,12 +86,12 @@ function App() {
             {
               id: 2,
               name: "The Exciting Lesson",
-              summary: "Discover new concepts and ideas",
+              content: "Discover new concepts and ideas",
             },
             {
               id: 3,
               name: "The Exciting Lesson",
-              summary: "Discover new concepts and ideas",
+              content: "Discover new concepts and ideas",
             },
           ],
         },
@@ -103,7 +103,7 @@ function App() {
             {
               id: 1,
               name: "The Lesson Course",
-              summary: "This Lesson is so cool",
+              content: "This Lesson is so cool",
             },
           ],
         },
@@ -123,12 +123,12 @@ function App() {
             {
               id: 3,
               name: "The Coding Lesson",
-              summary: "Hands-on coding experience",
+              content: "Hands-on coding experience",
             },
             {
               id: 4,
               name: "The Coding Lesson",
-              summary: "Hands-on coding experience",
+              content: "Hands-on coding experience",
             },
           ],
         },
@@ -160,6 +160,7 @@ function App() {
 
   const editCategory = (params) => {
     // setEditCategory((pre) => !pre);
+    // console.log(isEditCategory)
     setEditCategory(params?.cate?.id);
     if (isEditCategory === params?.cate?.id) {
       console.log("form is editing");
