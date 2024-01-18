@@ -3,8 +3,9 @@ import React from "react";
 import { CustomButton } from "../CustomButton";
 import { CustomInput } from "../CustomInput";
 import { CustomTextArea } from "../CustomTextArea";
+import { uuidv4 } from "../../utils";
 
-export const Lesson = ({ lessonIndex, lessons, chapterIndex, props }) => {
+export const Lesson = ({ lessonIndex, lessons, chapterIndex, props, push, remove }) => {
     // console.log("props",props)
 
 
@@ -14,8 +15,14 @@ export const Lesson = ({ lessonIndex, lessons, chapterIndex, props }) => {
         <div className="flex justify-between">
           <div className="text-xl">Add Lesson</div>
           <div>
-            <CustomButton label="Add" />
-            <CustomButton label="Delete" />
+            <CustomButton label="Add" onClick={()=>{
+              push({
+                id: uuidv4(),
+                name: "",
+                summary: "",
+              })
+            }} />
+            <CustomButton label="Remove" onClick={()=>remove(lessonIndex)} />
           </div>
         </div>
         <div className="mt-5">

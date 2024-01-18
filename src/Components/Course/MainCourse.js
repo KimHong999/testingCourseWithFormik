@@ -69,7 +69,7 @@ export const MainCourse = ({categories, data, setData}) =>{
     return(
         <div>
             <TableCourse data={data} onDelete={deleteCourse} onEdit={editCourse} categories={categories} />
-            <Courses categories={categories} onSave={saveCourse} value={editCourseForm}  />
+            <Courses categories={categories} onSave={saveCourse} value={editCourseForm} setData={setData} />
         </div>
     )
 }

@@ -9,7 +9,7 @@ import { uuidv4 } from "../../utils";
 import { CustomButton } from "../CustomButton";
 import { courseSchema } from "../../Schemas/input";
 
-export const Courses = ({ categories, onSave, value }) => {
+export const Courses = ({ categories, onSave, value, setData }) => {
   // console.log("categories:",categories)
   console.log("value",value)
 
@@ -100,10 +100,10 @@ export const Courses = ({ categories, onSave, value }) => {
                 </div>
 
                 <FieldArray name="chapters" >
-                    {({})=>(
+                    {({push, remove})=>(
                         <>
-                            {props?.values?.chapters.length>0 && props?.values?.chapters.map((chapter,chapterIndex)=>(
-                                <Chapter  key={chapter.id} chapterIndex={chapterIndex} chapter={chapter} props={props} />
+                            {props?.values?.chapters.length>0 && props?.values?.chapters.map((chapters,chapterIndex)=>(
+                                <Chapter  key={chapters.id} chapterIndex={chapterIndex} chapters={chapters} props={props} setData={setData} push={push} remove={remove} />
 
                             ))} 
                         </>
@@ -111,7 +111,9 @@ export const Courses = ({ categories, onSave, value }) => {
                 </FieldArray>
                 
 
-                <CustomButton label="Save" type="submit" />
+                <div className="mt-5">
+                  <CustomButton label="Save" type="submit" />
+                </div>
               </Form>
             </div>
           );

@@ -11,16 +11,15 @@ export const courseSchema = yup.object().shape({
     summary: yup.string().min(1, "summary must be long").required("please input field"),
     category_id: yup.string().required("please selected"),
     chapters: yup.array().of(yup.object()
-    .shape({
-        name: yup.string().required("please input chapter name"),
-        summary: yup.string().required("please input field"),
-
-        lessons: yup.array().of(
-        yup.object().shape({
-          name: yup.string().required("please input lesson name"),
+      .shape({
+          name: yup.string().required("please input chapter name"),
           summary: yup.string().required("please input field"),
-        })
-      ),
-    })
+          lessons: yup.array().of(
+            yup.object().shape({
+              name: yup.string().required("please input lesson name"),
+              summary: yup.string().required("please input field"),
+            })
+        ),
+      })
   ),
 })

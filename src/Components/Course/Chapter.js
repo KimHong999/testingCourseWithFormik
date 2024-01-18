@@ -7,28 +7,28 @@ import { Lesson } from "./Lesson";
 import { uuidv4 } from "../../utils";
 
 
-export const Chapter = ({ chapterIndex, chapter, props }) => {
+export const Chapter = ({ chapterIndex, chapters, props, setData, push, remove }) => {
 
 
-//   const handleAddChapter = () => {
-//     const addChapter = {
-//         id : uuidv4(),
-//         name : "",
-//         summarize : "",
-//         lessons: [{
-//             id: uuidv4(),
-//             name:"",
-//             content:""
-//         }]
-//     }
-//     setForm((pre)=>{
-//         return{
-//             ...pre,
-//             chapters : [...pre.chapters, addChapter]
-//         }
-//     })
-//     // console.log("add cap", addChapter)
-// }
+  const handleAddChapter = () => {
+    const addChapter = {
+        id : uuidv4(),
+        name : "",
+        summarize : "",
+        lessons: [{
+            id: uuidv4(),
+            name:"",
+            content:""
+        }]
+    }
+    setData((pre)=>{
+        return{
+            ...pre,
+            chapters : [...pre.chapters, addChapter]
+        }
+    })
+    console.log("add cap", addChapter)
+}
 
 
 
@@ -40,8 +40,21 @@ export const Chapter = ({ chapterIndex, chapter, props }) => {
           <div className="flex justify-between">
             <div className="text-xl">Add Chapter</div>
             <div>
-              <CustomButton label="Add" />
-              <CustomButton label="Remove" />
+              <CustomButton label="Add" onClick={()=>{
+                push({
+                  id: uuidv4(),
+                  name: "",
+                  summary: "",
+                  lessons: [
+                    {
+                      id: uuidv4(),
+                      name: "",
+                      summary: "",
+                    },
+                  ],
+                })
+              }} />
+              <CustomButton label="Remove" onClick={() => remove(chapterIndex)} />
             </div>
           </div>
 
@@ -51,7 +64,7 @@ export const Chapter = ({ chapterIndex, chapter, props }) => {
               // name = ""
 
               name={`chapters.${chapterIndex}.name`}
-              value={chapter?.name}
+              value={chapters?.name}
               type="text"
               placeholder="name"
               onChange={props.handleChange}
@@ -63,14 +76,14 @@ export const Chapter = ({ chapterIndex, chapter, props }) => {
               label="summarize"
               // name="summary"
               name={`chapters.${chapterIndex}.summary`}
-              value={chapter?.summary}
+              value={chapters?.summary}
               placeholder="please input field"
               onChange={props.handleChange}
             />
           </div>
 
           <FieldArray name={`chapters.${chapterIndex}.lessons`}>
-                    {({ }) => {
+                    {({ push, remove}) => {
                         return (
                         <div>
                             {props?.values?.chapters[chapterIndex].lessons?.length > 0 &&
@@ -83,6 +96,8 @@ export const Chapter = ({ chapterIndex, chapter, props }) => {
                                     chapterIndex={chapterIndex}
                                     lessons={lessons}
                                     props={props}
+                                    push={push}
+                                    remove={remove}
                                     />
                                 );
                                 }
